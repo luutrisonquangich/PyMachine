@@ -22,6 +22,3 @@ async def tts(key:str):
     output.write_to_fp(mp3_fp)
     mp3_fp.seek(0)
     return StreamingResponse(mp3_fp,  media_type="audio/mp3")
-
-if __name__ == "__main__":
-    uvicorn.run(app, port=6565)
