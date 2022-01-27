@@ -3,12 +3,18 @@ import uvicorn
 from fastapi import FastAPI
 from gtts import gTTS
 from fastapi.responses import StreamingResponse
-
+from fastapi.responses import FileResponse
 
 
 app = FastAPI()
-@app.get('/{key}')
-async def index(key:str):
+
+@app.get('/')
+async def index():
+    return FileResponse("index.html")
+
+
+@app.get('/tts/{key}')
+async def tts(key:str):
     ctext = key
     clang = "vi"
     output = gTTS(text=ctext, lang=clang, slow=False)
